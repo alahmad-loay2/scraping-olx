@@ -24,6 +24,7 @@ jobs:
 
       - name: Run daily tracking script
         run: |
+          cd scraping 
           python daily_track.py  # Scrapes only the products with daily=True
 
       - name: Commit and push updates
