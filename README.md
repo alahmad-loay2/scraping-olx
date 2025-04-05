@@ -12,7 +12,7 @@
 ## installation
 
 - #### clone
-- 
+   
 ```html
     https://github.com/alahmad-loay2/scraping-olx.git
 ````
@@ -54,7 +54,7 @@ uses ML to check resalability of tracked products.
 
 ---
 
-## tecknologies
+## technologies
 
 - vite.js
 - selenium/beautifulSoup
