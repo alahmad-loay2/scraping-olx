@@ -31,7 +31,8 @@ def get_products():
         return jsonify({"products": []})
 
     df = pd.read_csv(CSV_FILE)
-    products = df[["user_search", "daily"]].drop_duplicates().to_dict(orient="records")
+    df = df.drop_duplicates(subset=["user_search"])
+    products = df[["user_search", "daily"]].to_dict(orient="records")
     return jsonify({"products": products})
 
 @app.route("/toggle-daily", methods=["POST"])
