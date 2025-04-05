@@ -49,13 +49,15 @@
 
 ## about
 
-Fullstack Webapp to scrape data from dubizzle lebanon, track products and analyze them.
+Fullstack Webapp to scrape data from dubizzle lebanon, track products and analyze them. <br/>
 uses ML to check resalability of tracked products.
 
-### product tracking page:
+### 📦 Product Tracking Page
+<hr/>
 ![Tracking Page](https://github.com/alahmad-loay2/scraping-olx/blob/main/project-screenshots/tracking.jpg?raw=true)
 
-### graph analysis page:
+### 📊 Graph Analysis Page
+<hr/>
 ![Analyzing Page](https://github.com/alahmad-loay2/scraping-olx/blob/main/project-screenshots/visual-analysis.jpg?raw=true)
 
 
