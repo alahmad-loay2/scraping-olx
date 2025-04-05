@@ -45,6 +45,9 @@
     python server.py
 ```
 
+push changes on github and in Workflow permissions <br/>
+turn on Read and write permissions
+
 ---
 
 ## about
