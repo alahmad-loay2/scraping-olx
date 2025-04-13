@@ -147,6 +147,14 @@ def cleaning():
 
     df = df[df.apply(lambda row: all(word in row["Name"] for word in row["user_search"].split()), axis=1)]
 
+    def parse_days_ago(date_str):
+        if "hour" in date_str:
+            return 0
+        match = re.search(r"(\d+)\s+day", date_str)
+        return int(match.group(1)) if match else 7  
+
+    df["days_ago"] = pd.to_numeric(df["Date"].apply(parse_days_ago))
+
     df["Price"] = df["Price"].str.extract(r'USD\s*([\d,]+)')[0]  
     df["Price"] = df["Price"].str.replace(',', '', regex=True)  
     df["Price"] = pd.to_numeric(df["Price"], errors="coerce")
@@ -162,7 +170,6 @@ def cleaning():
 
     df_cleaned = df.groupby("user_search", group_keys=False).apply(remove_outliers)
     df_cleaned.to_csv('cleaned_user_data.csv', index=False)
-
 
 def toggle_daily(product_name):
     df = pd.read_csv('cleaned_user_data.csv', dtype=str)
@@ -188,3 +195,30 @@ def delete(product_name):
     df2.to_csv('scraped_data.csv', index=False)
     print(f"deleted {product_name}.")
 
+
+
+# import pandas as pd
+
+# # Define your list of products and their original prices
+# products = [
+#     {"user_search": "ps5", "original_price": 700},
+#     {"user_search": "iphone x", "original_price": 500},
+#     {"user_search": "jordan 1", "original_price": 150},
+#     {"user_search": "iphone 15 pro", "original_price": 800},
+#     {"user_search": "airpods pro 2", "original_price": 250}
+# ]
+
+# # Load your existing cleaned user data CSV
+# df = pd.read_csv("cleaned_user_data.csv")
+
+# # Loop over products to add original price
+# for product in products:
+#     user_search_query = product["user_search"]
+#     original_price = product["original_price"]
+    
+#     # Add original price as a new column for matching search queries
+#     df.loc[df["user_search"].str.lower() == user_search_query.lower(), "original_price"] = original_price
+
+# # Save the updated DataFrame to a new CSV
+# df.to_csv("cleaned_user_data.csv", index=False)
+# print("Original prices added to the CSV!")

@@ -18,7 +18,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Decorative elements */
 body::before,
 body::after {
   content: '';
@@ -291,19 +290,6 @@ body::after {
   }
 }
 
-.product-url {
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-  display: block;
-  text-decoration: none;
-  word-break: break-all;
-}
-
-.product-url:hover {
-  color: var(--primary-green);
-}
-
 .product-card-header {
   display: flex;
   justify-content: space-between;
@@ -460,7 +446,14 @@ input:checked + .slider:before {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  padding: 15px 30px;
 }
+
+.graphs div {
+  width: 80%;
+  max-width: 600px;
+}
+
 
 .analysis-container{
   display: flex;
@@ -491,3 +484,130 @@ input:checked + .slider:before {
   margin: 30px 0 50px;
   padding: 15px 35px !important;
 }
+
+
+.resale-prediction {
+  margin: 40px 0;
+  padding: 20px;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  max-width: 1500px !important;
+  width: 100vw;
+  padding:50px 30px;
+}
+
+.resale-prediction h3 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.prediction-form {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.predict-button {
+  background-color: var(--primary-green);
+  color: var(--dark-bg);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.predict-button:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 163, 98, 0.3);
+}
+
+.predict-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.resale-table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.resale-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--input-bg);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.resale-table th,
+.resale-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.resale-table th {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.resale-table td {
+  color: var(--text-primary);
+}
+
+.resale-table tr:last-child td {
+  border-bottom: none;
+}
+
+.resale-table a {
+  color: var(--primary-green);
+  text-decoration: none;
+}
+
+.resale-table a:hover {
+  text-decoration: underline;
+}
+
+
+.js-plotly-plot .plotly .modebar {
+  position: initial !important;
+  display: flex;
+  min-width: 280px;
+}
+
+
+@media (max-width: 768px) {
+  .resale-prediction {
+    padding: 15px;
+  }
+
+  .prediction-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .prediction-input {
+    width: 100%;
+  }
+
+  .resale-table th,
+  .resale-table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .graphs text{
+    font-size: .8rem !important;
+  }
+}
+

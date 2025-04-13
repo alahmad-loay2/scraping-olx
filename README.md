@@ -53,7 +53,9 @@ turn on Read and write permissions
 ## about
 
 Fullstack Webapp to scrape data from dubizzle lebanon, track products and analyze them. <br/>
-uses ML to check resalability of tracked products.
+uses NLP tokenization and lemmatization of names, and ML Logistic Regression classifier  <br/>
+to check resalability of tracked products trained on original price, listing price, names, <br/>
+and how many days the product has been up for listing.
 
 ### 📦 Product Tracking Page
 ---
@@ -62,6 +64,10 @@ uses ML to check resalability of tracked products.
 ### 📊 Graph Analysis Page
 ---
 ![Analyzing Page](https://github.com/alahmad-loay2/scraping-olx/blob/main/project-screenshots/visual-analysis.jpg?raw=true)
+
+### Prediction
+---
+![Prediction Page](https://github.com/alahmad-loay2/scraping-olx/blob/main/project-screenshots/ml.jpg?raw=true)
 
 
 ---
@@ -72,6 +78,8 @@ uses ML to check resalability of tracked products.
 - selenium/beautifulSoup
 - pandas
 - Flask
+- Logistic Regression ML 
+- NLP 
 
 --- 
 

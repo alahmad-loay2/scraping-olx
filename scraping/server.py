@@ -4,6 +4,7 @@ import os
 from scrape import scrape, cleaning, toggle_daily, delete
 from flask_cors import CORS 
 import plotly.express as px
+from predict_ml import predict_resale_score 
 
 app = Flask(__name__)
 CORS(app)
@@ -103,6 +104,24 @@ def get_daily_trends():
 
     return jsonify(fig.to_json())
 
+
+
+
+@app.route("/get-top-resale", methods=["POST"])
+def get_top_resale():
+    data = request.get_json()
+    product_name = data.get("product", "").strip()
+    
+    try:
+        top_3_df = predict_resale_score(product_name)
+
+        if top_3_df is None or top_3_df.empty:
+            return jsonify({"error": "No entries found or prediction failed"}), 404
+
+        return jsonify({"top_3": top_3_df.to_dict(orient="records")})
+    
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 
