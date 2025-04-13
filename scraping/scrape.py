@@ -171,6 +171,7 @@ def cleaning():
     df_cleaned = df.groupby("user_search", group_keys=False).apply(remove_outliers)
     df_cleaned.to_csv('cleaned_user_data.csv', index=False)
 
+
 def toggle_daily(product_name):
     df = pd.read_csv('cleaned_user_data.csv', dtype=str)
     df2 = pd.read_csv('scraped_data.csv', dtype=str)
