@@ -22,10 +22,16 @@ def run_scraping():
     
     for product in tracked_products:
         print(f"Scraping: {product}")
-        allP = sequential_scraping(product)  
-        df = pd.DataFrame(allP)
-        df.to_csv(CSV_FILE, index=False, mode="a", header=not os.path.exists(CSV_FILE))
-    
+        max_retries = 3
+        for attempt in range(max_retries):
+            print(f"Attempt {attempt+1} for {product}")
+            allP = sequential_scraping(product)
+            if allP:
+                df = pd.DataFrame(allP)
+                df.to_csv(CSV_FILE, index=False, mode="a", header=not os.path.exists(CSV_FILE))
+                break  # Success
+            elif attempt == max_retries - 1:
+                print(f"Failed to scrape {product} after {max_retries} attempts.")
     print("Scraping done. Running cleaning script.")
     
     try:
