@@ -11,6 +11,7 @@ function ProductDetails() {
   const [maxPrice, setMaxPrice] = useState("");
   const [topResale, setTopResale] = useState(null);
   const [predicting, setPredicting] = useState(false);
+  const [originalPrice, setOriginalPrice] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -42,6 +43,11 @@ function ProductDetails() {
   const handlePredict = async (e) => {
     e.preventDefault();
 
+    if (!originalPrice) {
+      alert("Please enter your original price before predicting.");
+      return;
+    }
+
     setPredicting(true);
     try {
       const response = await fetch('http://127.0.0.1:5000/get-top-resale', {
@@ -51,12 +57,13 @@ function ProductDetails() {
         },
         body: JSON.stringify({
           product: productName,
+          original_price: parseFloat(originalPrice)
         })
       });
 
       const data = await response.json();
       if (response.ok) {
-        setTopResale(data.top_3);
+        setTopResale(data.top_5);
       } else {
         console.error('Prediction failed:', data.error);
       }
@@ -108,6 +115,16 @@ function ProductDetails() {
         <div className="resale-prediction">
           <h3>Resale Value Prediction</h3>
           <form onSubmit={handlePredict} className="prediction-form">
+          <div>
+              <label>Enter your original price:</label>
+              <input
+                type="number"
+                value={originalPrice}
+                onChange={(e) => setOriginalPrice(e.target.value)}
+                placeholder="e.g. 100000"
+                required
+              />
+            </div>
             <button
               type="submit"
               disabled={predicting}

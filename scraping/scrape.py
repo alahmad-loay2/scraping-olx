@@ -202,11 +202,14 @@ def delete(product_name):
 
 # # Define your list of products and their original prices
 # products = [
-#     {"user_search": "ps5", "original_price": 700},
-#     {"user_search": "iphone x", "original_price": 500},
-#     {"user_search": "jordan 1", "original_price": 150},
-#     {"user_search": "iphone 15 pro", "original_price": 800},
-#     {"user_search": "airpods pro 2", "original_price": 250}
+#     {"user_search": "ps5", "original_price": 600},
+#     {"user_search": "iphone x", "original_price": 250},
+#     {"user_search": "jordan 1", "original_price": 250},
+#     {"user_search": "iphone 15 pro", "original_price": 1400},
+#     {"user_search": "airpods pro 2", "original_price": 220},
+#     {"user_search": "hyundai elantra", "original_price": 18000},
+#     {"user_search": "asus rog strix", "original_price": 2500},
+
 # ]
 
 # # Load your existing cleaned user data CSV

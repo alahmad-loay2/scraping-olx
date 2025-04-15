@@ -19,7 +19,7 @@ def preprocess(text):
     lemmatized = [lemmatizer.lemmatize(t) for t in tokens]
     return " ".join(lemmatized)
 
-def predict_resale_score(search_query):
+def predict_resale_score(search_query, original_price):
     df = pd.read_csv("cleaned_user_data.csv")
     df = df[df["user_search"].str.lower() == search_query.lower()]
 
@@ -31,11 +31,22 @@ def predict_resale_score(search_query):
     text_cleaned = df["text"].apply(preprocess)
     X_text = tfidf.transform(text_cleaned)
 
-    X_numeric = df[["Price", "days_ago"]].values
+    df["original_price"] = original_price
+
+
+    X_numeric = df[["Price", "days_ago", "original_price"]].values
     X_combined = hstack([X_text, X_numeric])
 
     df["resale_score"] = model.predict_proba(X_combined)[:, 1]
 
     top_5 = df.sort_values("resale_score", ascending=False).head(5)
 
-    return top_5[["user_search", "Name", "Price", "days_ago", "resale_score", "link"]]
+    return top_5[["user_search", "Name", "Price", "resale_score", "link"]]
+
+
+# search_query = "asus rog strix"
+# original_price = 1000
+
+# result = predict_resale_score(search_query, original_price)
+# print(result)
+

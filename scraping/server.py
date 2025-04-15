@@ -111,14 +111,16 @@ def get_daily_trends():
 def get_top_resale():
     data = request.get_json()
     product_name = data.get("product", "").strip()
-    
+    original_price = data.get("original_price", None)
+    if original_price is None:
+        return jsonify({"error": "Original price is required"}), 400
     try:
-        top_3_df = predict_resale_score(product_name)
+        top_5_df = predict_resale_score(product_name, original_price)
 
-        if top_3_df is None or top_3_df.empty:
+        if top_5_df is None or top_5_df.empty:
             return jsonify({"error": "No entries found or prediction failed"}), 404
 
-        return jsonify({"top_3": top_3_df.to_dict(orient="records")})
+        return jsonify({"top_5": top_5_df.to_dict(orient="records")})
     
     except Exception as e:
         return jsonify({"error": str(e)}), 500
