@@ -1,8 +1,8 @@
 name: Scrape Daily Tracked Products
 
 on:
-  schedule:
-    - cron: '0 0 * * *'  # Run every day at midnight UTC
+  #schedule:
+   # - cron: '0 0 * * *'  # Run every day at midnight UTC
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
